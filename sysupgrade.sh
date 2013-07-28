@@ -45,13 +45,13 @@ SYSUPGRADE_CONFIG_VARS="AUTOCLEAN CACHEDIR DESTDIR ETCUPDATE KERNEL
 # Directory in which to keep downloaded release files.
 #
 # Can be overriden for test purposes only.
-: ${SYSUPGRADE_CACHEDIR:="@SYSUPGRADE_CACHEDIR@"}
+: ${SYSUPGRADE_CACHEDIR:="__SYSUPGRADE_CACHEDIR__"}
 
 
 # Paths to installed files.
 #
 # Can be overriden for test purposes only.
-: ${SYSUPGRADE_ETCDIR:="@SYSUPGRADE_ETCDIR@"}
+: ${SYSUPGRADE_ETCDIR:="__SYSUPGRADE_ETCDIR__"}
 
 
 # Sets defaults for configuration variables that need a value.
@@ -449,7 +449,7 @@ sysupgrade_auto() {
 # \param ... Command-line arguments to be processed.
 #
 # \return An exit code to be returned to the user.
-sysupgrade_main() {
+main() {
     local config_file="${SYSUPGRADE_ETCDIR}/sysupgrade.conf"
 
     shtk_config_init ${SYSUPGRADE_CONFIG_VARS}

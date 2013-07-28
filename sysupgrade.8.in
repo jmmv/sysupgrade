@@ -116,7 +116,7 @@ The following options apply to all commands:
 Specifies the configuration file to use.
 .Pp
 Default:
-.Pa @SYSUPGRADE_ETCDIR@/sysupgrade.conf
+.Pa __SYSUPGRADE_ETCDIR__/sysupgrade.conf
 .It Fl d Ar destdir
 Path to the
 .Nx
@@ -319,9 +319,9 @@ Any arguments supplied to the command are passed directly to
 which comes handy in those cases where you have to manually fix a broken test.
 .Sh FILES
 .Bl -tag -width XXXX
-.It Pa @SYSUPGRADE_ETCDIR@/sysupgrade.conf
+.It Pa __SYSUPGRADE_ETCDIR__/sysupgrade.conf
 Default configuration file.
-.It Pa @SYSUPGRADE_CACHEDIR@
+.It Pa __SYSUPGRADE_CACHEDIR__
 Location where distribution sets are temporarily stored.
 The
 .Sq fetch
@@ -387,4 +387,4 @@ The
 .Nm
 utility was developed by
 .An Julio Merino
-.Aq jmmv@NetBSD.org .
+.Aq jmmv@google.com .

@@ -65,7 +65,7 @@ If you plan on issuing different upgrade steps at different times, this
 directory should persist across the different executions.
 .Pp
 Default:
-.Pa @SYSUPGRADE_CACHEDIR@
+.Pa __SYSUPGRADE_CACHEDIR__
 .It Va DESTDIR
 Path to the root of the system to be upgraded.
 This is prepended to all other paths affected by

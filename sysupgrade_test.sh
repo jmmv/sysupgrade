@@ -1,4 +1,4 @@
-#! @ATF_SH@
+#! __ATF_SH__
 # Copyright 2012 Google Inc.
 # All rights reserved.
 #
@@ -102,7 +102,7 @@ atf_test_case config__builtins
 config__builtins_body() {
     cat >expout <<EOF
 AUTOCLEAN = yes
-CACHEDIR = @SYSUPGRADE_CACHEDIR@
+CACHEDIR = __SYSUPGRADE_CACHEDIR__
 DESTDIR is undefined
 ETCUPDATE = yes
 KERNEL = AUTO
