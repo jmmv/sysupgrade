@@ -26,8 +26,8 @@ dnl THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 dnl (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 dnl OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-AC_INIT([NetBSD System Upgrader], [1.5],
-        [tech-userlevel@NetBSD.org], [sysupgrade], [])
+AC_INIT([NetBSD System Upgrader], [1.6],
+        [https://github.com/jmmv/sysupgrade/issues/], [sysupgrade], [])
 AC_PREREQ([2.65])
 
 
