@@ -50,19 +50,20 @@ sbin_SCRIPTS = sysupgrade
 CLEANFILES = sysupgrade
 EXTRA_DIST += sysupgrade.sh
 sysupgrade: $(srcdir)/sysupgrade.sh
-	source=sysupgrade.sh target=sysupgrade; $(BUILD_SCRIPT)
+	$(AM_V_GEN)source=sysupgrade.sh target=sysupgrade; $(BUILD_SCRIPT)
 
 man_MANS = sysupgrade.8
 CLEANFILES += sysupgrade.8
 EXTRA_DIST += sysupgrade.8.in
 sysupgrade.8: $(srcdir)/sysupgrade.8.in
-	source=sysupgrade.8.in target=sysupgrade.8; $(BUILD_FILE)
+	$(AM_V_GEN)source=sysupgrade.8.in target=sysupgrade.8; $(BUILD_FILE)
 
 man_MANS += sysupgrade.conf.5
 CLEANFILES += sysupgrade.conf.5
 EXTRA_DIST += sysupgrade.conf.5.in
 sysupgrade.conf.5: $(srcdir)/sysupgrade.conf.5.in
-	source=sysupgrade.conf.5.in target=sysupgrade.conf.5; $(BUILD_FILE)
+	$(AM_V_GEN)source=sysupgrade.conf.5.in target=sysupgrade.conf.5; \
+	$(BUILD_FILE)
 
 dist_sysconf_DATA = default.conf
 
@@ -73,7 +74,8 @@ pkgtests_SCRIPTS = sysupgrade_test
 CLEANFILES += sysupgrade_test
 EXTRA_DIST += sysupgrade_test.sh
 sysupgrade_test: $(srcdir)/sysupgrade_test.sh
-	source=sysupgrade_test.sh target=sysupgrade_test; $(BUILD_TEST)
+	$(AM_V_GEN)source=sysupgrade_test.sh target=sysupgrade_test; \
+	$(BUILD_TEST)
 
 if HAVE_KYUA
 CHECK_ENVIRONMENT  = PATH=$(abs_top_builddir):$${PATH}
