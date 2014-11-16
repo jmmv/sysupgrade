@@ -49,7 +49,7 @@ else
     /*)
         ;;
     *)
-        AC_MSG_ERROR([ATF_CONFSUBDIR must hold an absolute path])
+        AC_MSG_ERROR([SYSUPGRADE_CACHEDIR must hold an absolute path])
         ;;
     esac
     AC_SUBST([SYSUPGRADE_CACHEDIR])
@@ -61,14 +61,7 @@ m4_ifndef([PKG_CHECK_MODULES],
 
 m4_ifndef([SHTK_CHECK],
     [m4_fatal([Cannot find shtk.m4; see the INSTALL document for help])])
-SHTK_CHECK([>= 1.3])
-
-m4_ifndef([ATF_CHECK_SH],
-    [m4_fatal([Cannot find atf-sh.m4; see the INSTALL document for help])])
-ATF_CHECK_SH([>= 0.17])
-m4_ifndef([ATF_ARG_WITH],
-    [m4_fatal([Cannot find atf-common.m4; see the INSTALL document for help])])
-ATF_ARG_WITH
+SHTK_CHECK([>= 1.6])
 
 
 AC_PATH_PROG([KYUA], [kyua])

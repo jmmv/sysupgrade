@@ -33,8 +33,7 @@ noinst_DATA = INSTALL README
 EXTRA_DIST = $(doc_DATA) INSTALL README
 
 BUILD_SED = \
-	sed -e 's,__ATF_SH__,$(ATF_SH),g' \
-	    -e 's,__SYSUPGRADE_CACHEDIR__,$(SYSUPGRADE_CACHEDIR),g' \
+	sed -e 's,__SYSUPGRADE_CACHEDIR__,$(SYSUPGRADE_CACHEDIR),g' \
 	    -e 's,__SYSUPGRADE_ETCDIR__,$(sysconfdir),g'
 BUILD_SCRIPT = \
 	$(BUILD_SED) <"$(srcdir)/$${source}" | \
@@ -43,8 +42,8 @@ BUILD_FILE = \
 	$(BUILD_SED) <"$(srcdir)/$${source}" >"$${target}.tmp"; \
 	mv "$${target}.tmp" "$${target}"
 BUILD_TEST = \
-	$(BUILD_FILE); \
-	chmod +x "$${target}"
+	$(BUILD_SED) <"$(srcdir)/$${source}" | \
+	    $(SHTK_TOOL) build -m shtk_unittest_main -o "$${target}" -
 
 sbin_SCRIPTS = sysupgrade
 CLEANFILES = sysupgrade
@@ -67,7 +66,6 @@ sysupgrade.conf.5: $(srcdir)/sysupgrade.conf.5.in
 
 dist_sysconf_DATA = default.conf
 
-if WITH_ATF
 dist_pkgtests_DATA = Kyuafile
 
 pkgtests_SCRIPTS = sysupgrade_test
@@ -101,13 +99,6 @@ missing-kyua:
 check-local: missing-kyua
 installcheck-local: missing-kyua
 endif  # HAVE_KYUA
-else  # WITH_ATF
-dist-hook: forbid-dist
-PHONY_TARGETS += forbid-dist
-forbid-dist:
-	@echo "Sorry; cannot make dist without atf."
-	@false
-endif  # WITH_ATF
 
 PHONY_TARGETS += clean-all
 clean-all:

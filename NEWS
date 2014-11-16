@@ -3,7 +3,8 @@ Changes in version 1.6
 
 STILL UNDER DEVELOPMENT; NOT RELEASED YET.
 
-* No changes recorded.
+* Converted test programs to shtk's unittest library, thus removing the
+  dependency on atf-sh and bumping the dependency on shtk to 1.6.
 
 
 Changes in version 1.5
