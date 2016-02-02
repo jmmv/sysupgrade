@@ -1115,3 +1115,13 @@ Type 'man sysupgrade' for help
 EOF
     assert_command -s exit:1 -e file:experr sysupgrade -Z
 }
+
+
+shtk_unittest_add_test missing_argument
+missing_argument_test() {
+    cat >experr <<EOF
+sysupgrade: E: Missing argument to option -d
+Type 'man sysupgrade' for help
+EOF
+    assert_command -s exit:1 -e file:experr sysupgrade -d
+}
