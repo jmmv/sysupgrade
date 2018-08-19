@@ -690,6 +690,46 @@ sets__from_args_test() {
 }
 
 
+shtk_unittest_add_test sets__extract_fail
+sets__extract_fail_test() {
+    create_mock_release release ok1 fail1 ok2
+    SYSUPGRADE_CACHEDIR="$(pwd)/release/binary/sets"; export SYSUPGRADE_CACHEDIR
+
+    local real_progress="$(which progress)"
+    cat >progress <<EOF
+#! /bin/sh
+
+for arg in "\${@}"; do
+    case "\${arg}" in
+         */fail[0-9].tgz) exit 1 ;;
+    esac
+done
+
+exec "${real_progress}" "\${@}"
+EOF
+    chmod +x progress
+    PATH="$(pwd):${PATH}"
+
+    expected_sets="ok1"
+    unexpected_sets="fail1 ok2"
+
+    assert_command -s exit:1 -e ignore sysupgrade -c /dev/null \
+        -o DESTDIR="$(pwd)/root" \
+        -o SETS="${expected_sets} ${unexpected_sets}" \
+        sets
+
+    for set_name in ${expected_sets}; do
+        [ -f "root/${set_name}.cookie" ] \
+            || fail "Expected set ${set_name} not extracted"
+    done
+
+    for set_name in ${unexpected_sets}; do
+        [ ! -f "root/${set_name}.cookie" ] \
+            || fail "Unexpected set ${set_name} extracted"
+    done
+}
+
+
 shtk_unittest_add_test sets__invalid_kern
 sets__invalid_kern_test() {
     cat >experr <<EOF

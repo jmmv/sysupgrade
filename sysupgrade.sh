@@ -174,7 +174,8 @@ extract_set() {
 
     shtk_cli_info "Extracting ${set_name} into ${destdir}/"
     [ -z "${destdir}" ] || shtk_process_run mkdir -p "${destdir}"
-    progress -zf "${set_tgz}" tar -xp -C "${destdir}/" -f -
+    progress -zf "${set_tgz}" tar -xp -C "${destdir}/" -f - \
+        || shtk_cli_error "Failed to extract ${set_tgz}"
 }
 
 

@@ -8,6 +8,9 @@ STILL UNDER DEVELOPMENT; NOT RELEASED YET.
 
 * Fixed option parsing to detect missing arguments to options.
 
+* Issue #5: Fixed detection of error conditions during set extraction.
+  sysupgrade will now abort early if any set fails to unpack.
+
 
 Changes in version 1.5
 ======================
